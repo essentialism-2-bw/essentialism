@@ -1,24 +1,25 @@
 import React from "react";
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react"; */
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 
 function Auth() {
-  const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = data => {
-    console.log(data);
-  };
+  const { register, /* handleSubmit, watch, */ errors } = useForm();
+  /* const onSubmit = data => {
+      console.log(data);
+  }; */
 
-  console.log(watch("example")); // watch input value by passing the name of it
+  // console.log(watch("example")); // watch input value by passing the name of it
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Form
-      onSubmit={handleSubmit(onSubmit)}
+      /* onSubmit={handleSubmit(onSubmit)} */
       style={{
         width: "450px",
         padding: "30px",
+        marginTop: "-50px",
         backgroundColor: "#fff",
         borderRadius: "7px",
         boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
@@ -47,7 +48,7 @@ function Auth() {
         {errors.exampleRequired && <span>This field is required</span>}
       </FormGroup>
 
-      <Link to="/onboarding">
+      <Link to="/onboarding/initial_values">
         <Button size="md" type="submit">
           Submit
         </Button>
