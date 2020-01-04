@@ -1,17 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Form,
-  Badge,
-  Container,
-  Row,
-  Col,
-  UncontrolledCollapse,
-  CardBody,
-  Card
-} from "reactstrap";
+import { Button, Container, Row, Col } from "reactstrap";
 import TopValueBtn from "./TopValueBtn";
+import NoteCard from "./NoteCard";
 
 function Dashboard(props) {
   const [values] = useState(props.valueList);
@@ -29,6 +20,16 @@ function Dashboard(props) {
             />
           );
         })}
+      </Row>
+      <Row>
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
+        <NoteCard title="" />
       </Row>
     </Container>
   );
