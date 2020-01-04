@@ -22,7 +22,8 @@ function Auth() {
         marginTop: "-50px",
         backgroundColor: "#fff",
         borderRadius: "7px",
-        boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
+        boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+        alignSelf: "center"
       }}
     >
       <h4 style={{ margin: "0 0 20px" }}>Login</h4>

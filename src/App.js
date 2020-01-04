@@ -5,6 +5,7 @@ import Auth from "./components/Auth";
 import InitialValues from "./components/InitialValues";
 import TopValues from "./components/TopValues";
 import Descriptions from "./components/Descriptions";
+import Dashboard from "./components/Dashboard";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,27 @@ function App() {
     setValues([...list]);
   }
 
+  const placeholderList = [
+    {
+      value: "Love",
+      color: "success",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      value: "Peace",
+      color: "dark",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      value: "Harmony",
+      color: "light",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ];
+
   return (
     <div
       style={{
@@ -29,13 +51,15 @@ function App() {
     )`,
         minHeight: "100vh",
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
         paddingTop: "50px"
       }}
     >
       <Router>
         <Switch>
+          <Route path="/dashboard">
+            <Dashboard valueList={placeholderList} />
+          </Route>
           <Route path="/onboarding/descriptions">
             <Descriptions valueList={values} />
           </Route>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Badge } from "reactstrap";
+import { Button, Form, Badge, Container, Row, Col } from "reactstrap";
 
 function InitialValues(props) {
   const initial_values = [
@@ -252,68 +252,77 @@ function InitialValues(props) {
   }
 
   return (
-    <div style={{ maxWidth: "800px" }}>
-      <Form
-        onSubmit={() => {
-          props.handleValueChange();
-        }}
-        value={selected}
-      >
-        <h4
-          style={{
-            padding: "30px",
-            backgroundColor: "#fff",
-            borderRadius: "7px",
-            boxShadow:
-              "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-            margin: "0 0 30px"
+    <Container>
+      <Col>
+        <Form
+          onSubmit={() => {
+            props.handleValueChange();
           }}
+          value={selected}
         >
-          Pick the values which resonate with you
-          <Link to="/onboarding/final_values">
-            <Button
-              color="success"
-              onClick={() => {
-                props.handleValueChange(selected);
-              }}
+          <h4
+            style={{
+              margin: "0 0 30px"
+            }}
+          >
+            <Badge
               style={{
+                padding: "30px 100px 30px 30px",
+                backgroundColor: "#fff",
+                borderRadius: "7px",
                 boxShadow:
                   "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-                position: "relative",
-                left: "285px"
+                fontSize: "inherit",
+                color: "inherit",
+                fontWeight: "inherit"
               }}
             >
-              continue
-            </Button>
-          </Link>
-        </h4>
-        {selected.length > 0 &&
-          selected.map(value => {
-            return <Badge style={{ margin: "5px" }}>{value}</Badge>;
-          })}
-        <div
-          style={{
-            height: "700px",
-            overflow: "hidden",
-            overflowY: "scroll"
-          }}
-        >
-          {values.map(value => {
-            return (
+              Pick the values which resonate with you
+            </Badge>
+            <Link to="/onboarding/final_values">
               <Button
-                color="light"
-                onClick={addValue}
+                color="success"
+                onClick={() => {
+                  props.handleValueChange(selected);
+                }}
                 style={{
-                  margin: "10px 5px"
+                  boxShadow:
+                    "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+                  marginLeft: "-60px"
                 }}
               >
-                {value}
+                continue
               </Button>
-            );
-          })}
-        </div>
-      </Form>
-    </div>
+            </Link>
+          </h4>
+          {selected.length > 0 &&
+            selected.map(value => {
+              return <Badge style={{ margin: "5px" }}>{value}</Badge>;
+            })}
+          <div
+            style={{
+              height: "700px",
+              overflow: "hidden",
+              overflowY: "scroll"
+            }}
+          >
+            {values.map(value => {
+              return (
+                <Button
+                  color="light"
+                  onClick={addValue}
+                  style={{
+                    margin: "10px 5px"
+                  }}
+                >
+                  {value}
+                </Button>
+              );
+            })}
+          </div>
+        </Form>
+      </Col>
+    </Container>
   );
 }
 
