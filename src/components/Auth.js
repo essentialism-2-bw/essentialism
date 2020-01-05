@@ -12,21 +12,25 @@ function Auth() {
 
   // console.log(watch("example")); // watch input value by passing the name of it
 
+  const formStyle = {
+    width: "450px",
+    padding: "30px",
+    marginTop: "-50px",
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    alignSelf: "center"
+  };
+
+  const headStyle = { margin: "0 0 20px" };
+
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <Form
       /* onSubmit={handleSubmit(onSubmit)} */
-      style={{
-        width: "450px",
-        padding: "30px",
-        marginTop: "-50px",
-        backgroundColor: "#fff",
-        borderRadius: "7px",
-        boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-        alignSelf: "center"
-      }}
+      style={formStyle}
     >
-      <h4 style={{ margin: "0 0 20px" }}>Login</h4>
+      <h4 style={headStyle}>Login</h4>
 
       <FormGroup>
         {/* register your input into the hook by invoking the "register" function */}

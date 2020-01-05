@@ -8,6 +8,12 @@ function Dashboard(props) {
   const [values] = useState(props.valueList);
   const [selected, setSelected] = useState([]);
 
+  const addNoteStyle = {
+    paddingLeft: "30px",
+    paddingRight: "30px",
+    marginTop: "30px"
+  };
+
   return (
     <Container>
       <Row>
@@ -30,6 +36,13 @@ function Dashboard(props) {
         <NoteCard title="" />
         <NoteCard title="" />
         <NoteCard title="" />
+      </Row>
+      <Row>
+        <Col>
+          <Button size="sm" color="success" style={addNoteStyle}>
+            new note
+          </Button>
+        </Col>
       </Row>
     </Container>
   );

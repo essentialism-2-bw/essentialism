@@ -251,6 +251,37 @@ function InitialValues(props) {
     }
   }
 
+  const headerStyle = {
+    padding: "30px 100px 30px 30px",
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    fontSize: "inherit",
+    color: "inherit",
+    fontWeight: "inherit"
+  };
+
+  const headerMargin = {
+    margin: "0 0 30px"
+  };
+
+  const submitStyle = {
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    marginLeft: "-60px"
+  };
+
+  const bodyHeight = {
+    height: "700px",
+    overflow: "hidden",
+    overflowY: "scroll"
+  };
+
+  const inputBtnStyle = {
+    margin: "10px 5px"
+  };
+
+  const valueStyle = { margin: "5px" };
+
   return (
     <Container>
       <Col>
@@ -260,23 +291,8 @@ function InitialValues(props) {
           }}
           value={selected}
         >
-          <h4
-            style={{
-              margin: "0 0 30px"
-            }}
-          >
-            <Badge
-              style={{
-                padding: "30px 100px 30px 30px",
-                backgroundColor: "#fff",
-                borderRadius: "7px",
-                boxShadow:
-                  "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-                fontSize: "inherit",
-                color: "inherit",
-                fontWeight: "inherit"
-              }}
-            >
+          <h4 style={headerMargin}>
+            <Badge style={headerStyle}>
               Pick the values which resonate with you
             </Badge>
             <Link to="/onboarding/final_values">
@@ -285,11 +301,7 @@ function InitialValues(props) {
                 onClick={() => {
                   props.handleValueChange(selected);
                 }}
-                style={{
-                  boxShadow:
-                    "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-                  marginLeft: "-60px"
-                }}
+                style={submitStyle}
               >
                 continue
               </Button>
@@ -297,24 +309,12 @@ function InitialValues(props) {
           </h4>
           {selected.length > 0 &&
             selected.map(value => {
-              return <Badge style={{ margin: "5px" }}>{value}</Badge>;
+              return <Badge style={valueStyle}>{value}</Badge>;
             })}
-          <div
-            style={{
-              height: "700px",
-              overflow: "hidden",
-              overflowY: "scroll"
-            }}
-          >
+          <div style={bodyHeight}>
             {values.map(value => {
               return (
-                <Button
-                  color="light"
-                  onClick={addValue}
-                  style={{
-                    margin: "10px 5px"
-                  }}
-                >
+                <Button color="light" onClick={addValue} style={inputBtnStyle}>
                   {value}
                 </Button>
               );

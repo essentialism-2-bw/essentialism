@@ -29,27 +29,37 @@ function TopValues(props) {
     console.log(selected);
   }, [selected]); */
 
+  const headerStyle = {
+    padding: "30px 100px 30px 30px",
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    fontSize: "inherit",
+    color: "inherit",
+    fontWeight: "inherit"
+  };
+
+  const headerMargin = {
+    margin: "0 0 30px"
+  };
+
+  const submitStyle = {
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+    marginLeft: "-60px"
+  };
+
+  const bodyHeight = { minHeight: "700px" };
+
+  const inputBtnStyle = {
+    margin: "10px 5px"
+  };
+
   return (
     <Container>
       <Col>
         <Form>
-          <h4
-            style={{
-              margin: "0 0 30px"
-            }}
-          >
-            <Badge
-              style={{
-                padding: "30px 100px 30px 30px",
-                backgroundColor: "#fff",
-                borderRadius: "7px",
-                boxShadow:
-                  "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-                fontSize: "inherit",
-                color: "inherit",
-                fontWeight: "inherit"
-              }}
-            >
+          <h4 style={headerMargin}>
+            <Badge style={headerStyle}>
               Now pick the three values most important to you
             </Badge>
             <Link to="/onboarding/descriptions">
@@ -58,26 +68,16 @@ function TopValues(props) {
                 onClick={() => {
                   props.handleValueChange(selected);
                 }}
-                style={{
-                  boxShadow:
-                    "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-                  marginLeft: "-60px"
-                }}
+                style={submitStyle}
               >
                 continue
               </Button>
             </Link>
           </h4>
-          <div style={{ minHeight: "700px" }}>
+          <div style={bodyHeight}>
             {values.map(value => {
               return (
-                <Button
-                  color="light"
-                  onClick={addValue}
-                  style={{
-                    margin: "10px 5px"
-                  }}
-                >
+                <Button color="light" onClick={addValue} style={inputBtnStyle}>
                   {value}
                 </Button>
               );

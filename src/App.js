@@ -23,38 +23,38 @@ function App() {
   const placeholderList = [
     {
       value: "Love",
-      color: "success",
+      color: "light",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
       value: "Peace",
-      color: "dark",
+      color: "secondary",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
       value: "Harmony",
-      color: "light",
+      color: "dark",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
   ];
 
+  const appBackgroundStyle = {
+    background: `linear-gradient(
+  135deg,
+  rgba(47, 128, 237, 1) 0%,
+  rgb(7, 74, 168) 98%
+)`,
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    paddingTop: "50px"
+  };
+
   return (
-    <div
-      style={{
-        background: `linear-gradient(
-      135deg,
-      rgba(47, 128, 237, 1) 0%,
-      rgb(7, 74, 168) 98%
-    )`,
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: "50px"
-      }}
-    >
+    <div style={appBackgroundStyle}>
       <Router>
         <Switch>
           <Route path="/dashboard">
