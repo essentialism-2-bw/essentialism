@@ -299,7 +299,7 @@ function InitialValues(props) {
               <Button
                 color="success"
                 onClick={() => {
-                  props.handleValueChange(selected);
+                  props.handleValueChange(selected, false);
                 }}
                 style={submitStyle}
               >
@@ -314,7 +314,12 @@ function InitialValues(props) {
           <div style={bodyHeight}>
             {values.map(value => {
               return (
-                <Button color="light" onClick={addValue} style={inputBtnStyle}>
+                <Button
+                  color="light"
+                  onClick={addValue}
+                  style={inputBtnStyle}
+                  key={value}
+                >
                   {value}
                 </Button>
               );
