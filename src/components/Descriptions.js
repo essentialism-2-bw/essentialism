@@ -35,7 +35,6 @@ function Descriptions(props) {
         pair.importance_description = event.target.value;
       }
     });
-    console.log(descriptions);
     setDescription(newDescriptions);
   }
 
