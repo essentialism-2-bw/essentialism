@@ -39,11 +39,12 @@ function Descriptions(props) {
     setDescription(newDescriptions);
   }
 
-  function postValues(valueList) {
+  function postValues(valueList, token) {
     axios({
       method: "post",
       url: "https://topvaluecreated.free.beeceptor.com",
-      data: valueList
+      data: valueList,
+      headers: { Authorization: "Bearer " + token }
     })
       .then(function(response) {
         console.log(response);
@@ -97,7 +98,12 @@ function Descriptions(props) {
                 color="success"
                 style={submitStyle}
                 onClick={() => {
-                  props.handleValueChange(descriptions, true, postValues);
+                  props.handleValueChange(
+                    descriptions,
+                    true,
+                    postValues,
+                    85471405814058
+                  );
                 }}
               >
                 submit

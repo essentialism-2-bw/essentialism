@@ -15,12 +15,12 @@ function App() {
     console.log(values);
   }, [values]); */
 
-  function handleValueChange(list, hasFunc, func) {
+  function handleValueChange(list, hasFunc, func, token) {
     console.log("submited values", list);
     setValues([...list]);
     if (hasFunc) {
       console.log("function goes here", list, func);
-      func(list);
+      func(list, token);
     }
   }
 
