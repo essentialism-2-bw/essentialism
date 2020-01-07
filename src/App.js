@@ -1,12 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import Auth from "./components/Auth";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// import Auth from "./components/Auth";
 import InitialValues from "./components/InitialValues";
 import TopValues from "./components/TopValues";
 import Descriptions from "./components/Descriptions";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import PrivateRoute from "./Utils/PrivateRoute";
 import "./App.css";
 
 function App() {
@@ -47,11 +50,11 @@ function App() {
   ];
 
   const appBackgroundStyle = {
-    background: `linear-gradient(
-  135deg,
-  rgba(47, 128, 237, 1) 0%,
-  rgb(7, 74, 168) 98%
-)`,
+    // background: `linear-gradient(
+    //   135deg,
+    //   rgba(47, 128, 237, 1) 0%,
+    //   rgb(7, 74, 168) 98%
+    // )`,
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
@@ -60,27 +63,27 @@ function App() {
 
   return (
     <div style={appBackgroundStyle}>
-      <Switch>
-        <Route path="/dashboard">
-          <Dashboard valueList={placeholderList} />
-        </Route>
-        <Route path="/onboarding/descriptions">
-          <Descriptions
-            valueList={values}
-            handleValueChange={handleValueChange}
-          />
-        </Route>
-        <Route path="/onboarding/final_values">
-          <TopValues valueList={values} handleValueChange={handleValueChange} />
-        </Route>
-        <Route path="/onboarding/initial_values">
-          <InitialValues handleValueChange={handleValueChange} />
-        </Route>
-        <Route path="/test">
-          <Auth />
-        </Route>
-        <Route path="/" component={SignUp} />
-      </Switch>
+      <Router>
+        <Switch>
+          <PrivateRoute path="/dashboard">
+            <Dashboard valueList={placeholderList} />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/descriptions">
+            <Descriptions valueList={values} />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/final_values">
+            <TopValues
+              valueList={values}
+              handleValueChange={handleValueChange}
+            />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/initial_values">
+            <InitialValues handleValueChange={handleValueChange} />
+          </PrivateRoute>
+          <Route path="/login" component={Login} />
+          <Route path="/" component={SignUp} />
+        </Switch>
+      </Router>
     </div>
   );
 }

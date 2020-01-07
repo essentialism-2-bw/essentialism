@@ -5,6 +5,7 @@ import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
 
 function Dashboard(props) {
+  console.log(props);
   const [values] = useState(props.valueList);
   const [selected, setSelected] = useState([]);
 
