@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { Button, Container, Row, Col, Progress } from "reactstrap";
 import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
+import ProjectForm from "./ProjectForm";
 
 import PieChart from './Charts';
 
 function Dashboard(props) {
-  console.log(props);
   const [values] = useState(props.valueList);
   const [selected, setSelected] = useState([]);
 
