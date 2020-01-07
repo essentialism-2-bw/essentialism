@@ -40,7 +40,7 @@ function Descriptions(props) {
   }
 
   function postValues(valueList) {
-    axiosWithAuth()({
+    axiosWithAuth(); /* ({
       method: "post",
       url: "api/usrValues/",
       data: valueList
@@ -50,7 +50,7 @@ function Descriptions(props) {
       })
       .catch(function(error) {
         console.log(error);
-      });
+      }); */
   }
 
   const headerStyle = {
