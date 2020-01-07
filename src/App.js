@@ -16,9 +16,13 @@ function App() {
     console.log(values);
   }, [values]); */
 
-  function handleValueChange(list) {
+  function handleValueChange(list, hasFunc, func, token) {
     console.log("submited values", list);
     setValues([...list]);
+    if (hasFunc) {
+      console.log("function goes here", list, func);
+      func(list, token);
+    }
   }
 
   const placeholderList = [
@@ -61,13 +65,19 @@ function App() {
           <Dashboard valueList={placeholderList} />
         </Route>
         <Route path="/onboarding/descriptions">
-          <Descriptions valueList={values} />
+          <Descriptions
+            valueList={values}
+            handleValueChange={handleValueChange}
+          />
         </Route>
         <Route path="/onboarding/final_values">
           <TopValues valueList={values} handleValueChange={handleValueChange} />
         </Route>
         <Route path="/onboarding/initial_values">
           <InitialValues handleValueChange={handleValueChange} />
+        </Route>
+        <Route path="/test">
+          <Auth />
         </Route>
         <Route path="/" component={SignUp} />
       </Switch>

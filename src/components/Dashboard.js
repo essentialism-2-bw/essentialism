@@ -20,6 +20,7 @@ function Dashboard(props) {
         {props.valueList.map(value => {
           return (
             <TopValueBtn
+              key={value.value}
               value={value.value}
               color={value.color}
               description={value.description}
