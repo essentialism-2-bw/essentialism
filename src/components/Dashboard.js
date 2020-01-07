@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
+import ProjectForm from "./ProjectForm";
 
 function Dashboard(props) {
-  console.log(props);
   const [values] = useState(props.valueList);
   const [selected, setSelected] = useState([]);
 
@@ -44,6 +44,11 @@ function Dashboard(props) {
           <Button size="sm" color="success" style={addNoteStyle}>
             new note
           </Button>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ProjectForm />
         </Col>
       </Row>
     </Container>
