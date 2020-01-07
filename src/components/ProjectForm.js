@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
-export default function ProjectForm() {
+export default function ProjectForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
     console.log(data);
@@ -30,7 +30,10 @@ export default function ProjectForm() {
   /* console.log(watch("example")); // watch input value by passing the name of it */
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      style={{ position: "absolute", top: "50%", left: "50%" }}
+    >
       <FormGroup>
         <Row>
           <Col xs="5">
@@ -77,7 +80,9 @@ export default function ProjectForm() {
       </Row>
       <Row>
         <Col>
-          <Button color="dark">Cancel</Button>
+          <Button color="dark" onClick={props.close}>
+            Cancel
+          </Button>
         </Col>
       </Row>
     </Form>
