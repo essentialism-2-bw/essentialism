@@ -31,9 +31,9 @@ export const login = (userInfo, history) => dispatch => {
   axios
     .post("https://essentialism-2.herokuapp.com/api/auth/login", userInfo)
     .then(res => {
-      console.log(res);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+
       history.push("/dashboard");
     })
     .catch(err => dispatch({ type: LOGIN_FAILED }));
