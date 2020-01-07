@@ -5,9 +5,10 @@ import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
 import ProjectForm from "./ProjectForm";
 
-import PieChart from './Charts';
+import PieChart from "./Charts";
 
 function Dashboard(props) {
+  const [shouldShow, setShow] = useState(false);
   const [values] = useState(props.valueList);
   const [selected, setSelected] = useState([]);
 
@@ -19,15 +20,15 @@ function Dashboard(props) {
 
   useEffect(() => {
     projectsArray.forEach(project => {
-      if(project.user_values_id === 1){
-        return (totalProjects++)
+      if (project.user_values_id === 1) {
+        return totalProjects++;
       }
-    })
-  }, [])
+    });
+  }, []);
 
-//**The next two arrays are just dummy data**
-  let totalProjects = 0
-  console.log(totalProjects)
+  //**The next two arrays are just dummy data**
+  let totalProjects = 0;
+  console.log(totalProjects);
 
   const projectsArray = [
     {
@@ -38,7 +39,7 @@ function Dashboard(props) {
       user_values_id: 1,
       completed: false
     },
-        
+
     {
       id: 2,
       user_id: 123,
@@ -47,7 +48,7 @@ function Dashboard(props) {
       user_values_id: 2,
       completed: false
     },
-        
+
     {
       id: 3,
       user_id: 123,
@@ -56,41 +57,41 @@ function Dashboard(props) {
       user_values_id: 3,
       completed: false
     }
-  ]
+  ];
 
   const valuesArray = [
     {
       id: 1,
       user_id: 123,
-      value_name: 'Love'
+      value_name: "Love"
     },
-        
+
     {
       id: 2,
       user_id: 123,
-      value_name: 'Harmony'
+      value_name: "Harmony"
     },
-        
+
     {
       id: 3,
       user_id: 123,
-      value_name: 'Peace'
+      value_name: "Peace"
     }
-  ]
+  ];
 
   return (
     <div>
-    <h1>Hello User!</h1>
-    <div className='pieChartsDiv'>
-      <div>
-        <h3>Here's the values you've assigned so far:</h3>
-        <PieChart />
+      <h1>Hello User!</h1>
+      <div className="pieChartsDiv">
+        <div>
+          <h3>Here's the values you've assigned so far:</h3>
+          <PieChart />
+        </div>
+        <div>
+          <h3>Here's the values you've completed so far:</h3>
+          <PieChart />
+        </div>
       </div>
-      <div>
-        <h3>Here's the values you've completed so far:</h3>
-        <PieChart />
-      </div>
-    </div>
 
       <Container>
         <Row>
@@ -117,11 +118,25 @@ function Dashboard(props) {
         </Row>
         <Row>
           <Col>
-            <Button size="sm" color="success" style={addNoteStyle}>
+            <Button
+              size="sm"
+              color="success"
+              style={addNoteStyle}
+              onClick={() => {
+                setShow(!shouldShow);
+              }}
+            >
               new note
             </Button>
           </Col>
         </Row>
+        {shouldShow && (
+          <ProjectForm
+            close={() => {
+              setShow(!shouldShow);
+            }}
+          />
+        )}
       </Container>
     </div>
   );
