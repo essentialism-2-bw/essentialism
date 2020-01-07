@@ -15,7 +15,10 @@ export const GET_USER_FAILED = "GET_USER_FAILED";
 export const signUp = (userInfo, history) => dispatch => {
   dispatch({ type: SIGN_UP_START });
   axios
-    .post("https://essentialism-2.herokuapp.com/api/auth/register", userInfo)
+    .post(
+      "https://essentialism-test-01.herokuapp.com/api/auth/register",
+      userInfo
+    )
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
@@ -29,7 +32,7 @@ export const signUp = (userInfo, history) => dispatch => {
 export const login = (userInfo, history) => dispatch => {
   dispatch({ type: LOGIN_START });
   axios
-    .post("https://essentialism-2.herokuapp.com/api/auth/login", userInfo)
+    .post("https://essentialism-test-01.herokuapp.com/api/auth/login", userInfo)
     .then(res => {
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });

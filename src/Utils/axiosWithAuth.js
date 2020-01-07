@@ -11,3 +11,6 @@ const axiosWithAuth = () => {
 };
 
 export default axiosWithAuth;
+
+/* https://essentialism-test-01.herokuapp.com/ */
+/* https://essentialism-2.herokuapp.com/ */
