@@ -8,6 +8,7 @@ import Descriptions from "./components/Descriptions";
 import Dashboard from "./components/Dashboard";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
+import PrivateRoute from './Utils/PrivateRoute';
 import "./App.css";
 
 function App() {
@@ -62,18 +63,18 @@ function App() {
   return (
     <div style={appBackgroundStyle}>
       <Switch>
-        <Route path="/dashboard">
+        <PrivateRoute path="/dashboard">
           <Dashboard valueList={placeholderList} />
-        </Route>
-        <Route path="/onboarding/descriptions">
+        </PrivateRoute>
+        <PrivateRoute path="/onboarding/descriptions">
           <Descriptions valueList={values} />
-        </Route>
-        <Route path="/onboarding/final_values">
+        </PrivateRoute>
+        <PrivateRoute path="/onboarding/final_values">
           <TopValues valueList={values} handleValueChange={handleValueChange} />
-        </Route>
-        <Route path="/onboarding/initial_values">
+        </PrivateRoute>
+        <PrivateRoute path="/onboarding/initial_values">
           <InitialValues handleValueChange={handleValueChange} />
-        </Route>
+        </PrivateRoute>
         <Route path="/login" component={Login} />
         <Route path="/" component={SignUp} />
       </Switch>
