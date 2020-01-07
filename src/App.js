@@ -69,7 +69,10 @@ function App() {
             <Dashboard valueList={placeholderList} />
           </PrivateRoute>
           <PrivateRoute path="/onboarding/descriptions">
-            <Descriptions valueList={values} />
+            <Descriptions
+              valueList={values}
+              handleValueChange={handleValueChange}
+            />
           </PrivateRoute>
           <PrivateRoute path="/onboarding/final_values">
             <TopValues

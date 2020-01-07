@@ -13,6 +13,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import axiosWithAuth from "../Utils/axiosWithAuth";
 
 const colors = ["#F1EC7C", "#AE8BDB", "#F9BA5C"];
 
@@ -38,12 +39,11 @@ function Descriptions(props) {
     setDescription(newDescriptions);
   }
 
-  function postValues(valueList, token) {
-    axios({
+  function postValues(valueList) {
+    axiosWithAuth()({
       method: "post",
-      url: "https://topvaluecreated.free.beeceptor.com",
-      data: valueList,
-      headers: { Authorization: "Bearer " + token }
+      url: "api/usrValues/",
+      data: valueList
     })
       .then(function(response) {
         console.log(response);
