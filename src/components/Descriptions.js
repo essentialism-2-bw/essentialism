@@ -40,17 +40,14 @@ function Descriptions(props) {
   }
 
   function postValues(valueList) {
-    axiosWithAuth(); /* ({
-      method: "post",
-      url: "api/usrValues/",
-      data: valueList
-    })
+    axiosWithAuth()
+      .post("api/usrValues/", { data: valueList })
       .then(function(response) {
         console.log(response);
       })
       .catch(function(error) {
         console.log(error);
-      }); */
+      });
   }
 
   const headerStyle = {
