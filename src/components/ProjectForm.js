@@ -27,13 +27,8 @@ export default function ProjectForm(props) {
       });
   };
 
-  /* console.log(watch("example")); // watch input value by passing the name of it */
-
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ position: "absolute", top: "50%", left: "50%" }}
-    >
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
         <Row>
           <Col xs="5">

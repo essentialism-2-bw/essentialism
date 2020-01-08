@@ -24,15 +24,14 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
         setValues(res.data);
         setLoad(false);
       });
   }, []);
 
   return (
-    <div>
-      <h1>Hello User!</h1>
+    <Container>
+      {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
           <h3>Here's the values you've assigned so far:</h3>
@@ -42,9 +41,8 @@ function Dashboard(props) {
           <h3>Here's the values you've completed so far:</h3>
           <PieChart />
         </div>
-      </div>
-
-      <Container>
+      </div> */}
+      <Col>
         <Row>
           {!loading &&
             values.map(value => {
@@ -54,18 +52,12 @@ function Dashboard(props) {
                   value={value.value_name}
                   color={value.color}
                   description={value.importance_description}
+                  valueObj={value}
                 />
               );
             })}
         </Row>
         <Row>
-          <NoteCard title="This is a test" />
-          <NoteCard title="" />
-          <NoteCard title="" />
-          <NoteCard title="" />
-          <NoteCard title="" />
-          <NoteCard title="" />
-          <NoteCard title="" />
           <NoteCard title="" />
         </Row>
         <Row>
@@ -89,8 +81,8 @@ function Dashboard(props) {
             }}
           />
         )}
-      </Container>
-    </div>
+      </Col>
+    </Container>
   );
 }
 
