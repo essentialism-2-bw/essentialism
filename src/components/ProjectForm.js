@@ -21,9 +21,15 @@ export default function ProjectForm(props) {
       user_id: localStorage.getItem("id")
     });
 
+    console.log(
+      axiosWithAuth().post(`api/projects/${localStorage.getItem("id")}`, {
+        user_id: parseInt(localStorage.getItem("id")),
+        ...data
+      })
+    );
     axiosWithAuth()
-      .post(`/api/projects/${localStorage.getItem("id")}`, {
-        user_id: localStorage.getItem("id"),
+      .post(`api/projects/${localStorage.getItem("id")}`, {
+        user_id: parseInt(localStorage.getItem("id")),
         ...data
       })
       .then(function(response) {

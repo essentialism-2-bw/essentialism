@@ -80,7 +80,12 @@ function Dashboard(props) {
         </Row>
         <Row>
           {!projectsLoading && projects.length > 0 ? (
-            projects.map(project => console.log(project))
+            projects.map(project => {
+              console.log(project);
+              return (
+                <NoteCard title={project.project_title} key={project.id} />
+              );
+            })
           ) : (
             <NoteCard title="" />
           )}

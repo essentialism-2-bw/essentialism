@@ -15,12 +15,10 @@ import "./App.css";
 function App() {
   const [values, setValues] = useState([]);
 
-  function handleValueChange(list, hasFunc, func, token) {
-    console.log("submited values", list);
+  function handleValueChange(list, hasFunc, func) {
     setValues([...list]);
     if (hasFunc) {
-      console.log("function goes here", list, func);
-      func(list, token);
+      func(list);
     }
   }
 

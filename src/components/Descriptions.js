@@ -98,12 +98,7 @@ function Descriptions(props) {
                 color="success"
                 style={submitStyle}
                 onClick={() => {
-                  props.handleValueChange(
-                    descriptions,
-                    true,
-                    postValues,
-                    85471405814058
-                  );
+                  props.handleValueChange(descriptions, true, postValues);
                 }}
               >
                 submit
