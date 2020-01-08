@@ -15,9 +15,8 @@ function Dashboard(props) {
   const [selected, setSelected] = useState([]);
 
   const addNoteStyle = {
-    paddingLeft: "30px",
-    paddingRight: "30px",
-    marginTop: "30px"
+    paddingLeft: "20px",
+    paddingRight: "20px"
   };
 
   useEffect(() => {
@@ -44,24 +43,21 @@ function Dashboard(props) {
       </div> */}
       <Col>
         <Row>
-          {!loading &&
-            values.map(value => {
-              return (
-                <TopValueBtn
-                  key={value.value_name}
-                  value={value.value_name}
-                  color={value.color}
-                  description={value.importance_description}
-                  valueObj={value}
-                />
-              );
-            })}
-        </Row>
-        <Row>
-          <NoteCard title="" />
-        </Row>
-        <Row>
-          <Col>
+          <Col xs="10">
+            {!loading &&
+              values.map(value => {
+                return (
+                  <TopValueBtn
+                    key={value.value_name}
+                    value={value.value_name}
+                    color={value.color}
+                    description={value.importance_description}
+                    valueObj={value}
+                  />
+                );
+              })}
+          </Col>
+          <Col xs="2">
             <Button
               size="sm"
               color="success"
@@ -70,9 +66,12 @@ function Dashboard(props) {
                 setShow(!shouldShow);
               }}
             >
-              new note
+              Add +
             </Button>
           </Col>
+        </Row>
+        <Row>
+          <NoteCard title="" />
         </Row>
         {shouldShow && (
           <ProjectForm
