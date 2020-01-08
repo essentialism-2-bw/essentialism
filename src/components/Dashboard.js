@@ -14,6 +14,8 @@ function Dashboard(props) {
   const [values, setValues] = useState();
   const [projectsLoading, setProjectsLoad] = useState(true);
   const [projects, setProjects] = useState();
+  const [counter, setCount] = useState(0);
+  const [colorArray, setColorObject] = useState([]);
 
   const addNoteStyle = {
     paddingLeft: "20px",
@@ -24,18 +26,31 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
         setValues(res.data);
+        let colorArray = [];
+        res.data.forEach(val => {
+          let valid = val.id;
+          let color = val.color;
+          colorArray.push({ color, valid });
+        });
         setValueLoad(false);
+        return colorArray;
+      })
+      .then(colors => {
+        setColorObject(colors);
       });
     axiosWithAuth()
       .get(`/api/projects/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
         setProjects(res.data);
         setProjectsLoad(false);
       });
-  }, []);
+  }, [counter]);
+
+  function incrementCount() {
+    let place = counter;
+    setCount((place += 1));
+  }
 
   return (
     <Container>
@@ -62,6 +77,7 @@ function Dashboard(props) {
                     color={value.color}
                     description={value.importance_description}
                     valueObj={value}
+                    callSetCount={incrementCount}
                   />
                 );
               })}
@@ -82,9 +98,13 @@ function Dashboard(props) {
         <Row>
           {!projectsLoading && projects.length > 0 ? (
             projects.map(project => {
-              console.log(project);
               return (
-                <NoteCard title={project.project_title} key={project.id} />
+                <NoteCard
+                  title={project.project_title}
+                  key={project.id}
+                  colors={colorArray}
+                  valueId={project.user_values_id}
+                />
               );
             })
           ) : (
@@ -97,6 +117,7 @@ function Dashboard(props) {
               setShow(!shouldShow);
             }}
             selectData={values}
+            callSetCount={incrementCount}
           />
         )}
       </Col>

@@ -23,6 +23,8 @@ export default function ProjectForm(props) {
       })
       .then(function(response) {
         console.log(response);
+        props.callSetCount();
+        props.close();
       })
       .catch(function(error) {
         console.log(error);
