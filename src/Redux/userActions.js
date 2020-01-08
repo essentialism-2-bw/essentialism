@@ -41,6 +41,7 @@ export const login = (userInfo, history) => dispatch => {
     .then(res => {
       console.log(res)
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("id", res.data.id);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
 
       history.push("/dashboard");

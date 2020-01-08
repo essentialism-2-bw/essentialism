@@ -15,35 +15,12 @@ import "./App.css";
 function App() {
   const [values, setValues] = useState([]);
 
-  function handleValueChange(list, hasFunc, func, token) {
-    console.log("submited values", list);
+  function handleValueChange(list, hasFunc, func) {
     setValues([...list]);
     if (hasFunc) {
-      console.log("function goes here", list, func);
-      func(list, token);
+      func(list);
     }
   }
-
-  const placeholderList = [
-    {
-      value: "Love",
-      color: "light",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-      value: "Peace",
-      color: "secondary",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-      value: "Harmony",
-      color: "dark",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    }
-  ];
 
   const appBackgroundStyle = {
     // background: `linear-gradient(
@@ -62,7 +39,7 @@ function App() {
       <Router>
         <Switch>
           <PrivateRoute path="/dashboard">
-            <Dashboard valueList={placeholderList} />
+            <Dashboard />
           </PrivateRoute>
           <PrivateRoute path="/onboarding/descriptions">
             <Descriptions
