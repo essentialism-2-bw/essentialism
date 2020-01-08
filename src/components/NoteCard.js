@@ -15,6 +15,8 @@ import {
   Col
 } from "reactstrap";
 
+import axiosWithAuth from "../Utils/axiosWithAuth";
+
 import { useForm } from "react-hook-form";
 
 function NoteCard(props) {
@@ -41,16 +43,19 @@ function NoteCard(props) {
 
   const { register, handleSubmit, watch, errors } = useForm();
 
+  const [project, setProject] = useState(props.project);
   const [modal, setModal] = useState(false);
   const [isEditing, setEdit] = useState(false);
 
   const toggle = () => setModal(!modal);
 
   const onSubmit = data => {
-    console.log(data);
-    /* setValueObj({ ...valueObj, ...data });
+    setProject({ ...project, ...data });
     axiosWithAuth()
-      .put("api/usrValues/", { ...valueObj, ...data })
+      .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
+        ...project,
+        ...data
+      })
       .then(function(response) {
         console.log(response);
         props.callSetCount();
@@ -58,9 +63,13 @@ function NoteCard(props) {
       .catch(function(error) {
         console.log(error);
       });
-    document.getElementById(props.value).setAttribute("disabled", "true");
-    setEdit(false); */
+    document
+      .getElementById("note" + props.key)
+      .setAttribute("disabled", "true");
+    setEdit(false);
   };
+
+  console.log(project);
 
   return (
     <span>
@@ -95,11 +104,7 @@ function NoteCard(props) {
               </Row>
             </FormGroup>
             {isEditing && (
-              <Button
-                type="submit"
-                color="success"
-                style={{ marginRight: "20px" }}
-              >
+              <Button type="submit" color="success">
                 Create
               </Button>
             )}
@@ -110,6 +115,7 @@ function NoteCard(props) {
             <div>
               <Button
                 color="primary"
+                style={{ marginRight: "20px" }}
                 onClick={() => {
                   document
                     .getElementById("note" + props.key)
