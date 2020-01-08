@@ -12,6 +12,10 @@ export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILED = "GET_USER_FAILED";
 
+export const SEND_STATS_START = "SEND_STATS_START";
+export const SEND_STATS_SUCCESS = "SEND_STATS_SUCCESS";
+export const SEND_STATS_FAILED = "SEND_STATS_FAILED";
+
 export const signUp = (userInfo, history) => dispatch => {
   dispatch({ type: SIGN_UP_START });
   axios
