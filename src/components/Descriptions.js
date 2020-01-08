@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
-const colors = ["#F1EC7C", "#AE8BDB", "#F9BA5C"];
+const colors = ["#242582", "#553D67", "#F64C72"];
 
 function Descriptions(props) {
   const stateObject = props.valueList.map(value => {

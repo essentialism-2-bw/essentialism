@@ -64,6 +64,7 @@ function TopValueBtn(props) {
                 <Row>
                   <Col>
                     <Input
+                      style={{ minHeight: "500px" }}
                       id={props.value}
                       type="textarea"
                       name="importance_description"
