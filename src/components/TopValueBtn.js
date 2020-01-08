@@ -34,6 +34,7 @@ function TopValueBtn(props) {
       .put("api/usrValues/", { ...valueObj, ...data })
       .then(function(response) {
         console.log(response);
+        props.callSetCount();
       })
       .catch(function(error) {
         console.log(error);
