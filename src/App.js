@@ -62,7 +62,7 @@ function App() {
       <Router>
         <Switch>
           <PrivateRoute path="/dashboard">
-            <Dashboard valueList={placeholderList} />
+            <Dashboard />
           </PrivateRoute>
           <PrivateRoute path="/onboarding/descriptions">
             <Descriptions

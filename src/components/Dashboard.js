@@ -6,10 +6,12 @@ import NoteCard from "./NoteCard";
 import ProjectForm from "./ProjectForm";
 
 import PieChart from "./Charts";
+import axiosWithAuth from "../Utils/axiosWithAuth";
 
 function Dashboard(props) {
   const [shouldShow, setShow] = useState(false);
-  const [values] = useState(props.valueList);
+  const [loading, setLoad] = useState(true);
+  const [values, setValues] = useState();
   const [selected, setSelected] = useState([]);
 
   const addNoteStyle = {
@@ -19,65 +21,14 @@ function Dashboard(props) {
   };
 
   useEffect(() => {
-    projectsArray.forEach(project => {
-      if (project.user_values_id === 1) {
-        return totalProjects++;
-      }
-    });
+    axiosWithAuth()
+      .get(`/api/usrValues/${localStorage.getItem("id")}`)
+      .then(res => {
+        console.log(res.data);
+        setValues(res.data);
+        setLoad(false);
+      });
   }, []);
-
-  //**The next two arrays are just dummy data**
-  let totalProjects = 0;
-  console.log(totalProjects);
-
-  const projectsArray = [
-    {
-      id: 1,
-      user_id: 123,
-      project_title: "Code",
-      project_description: "etc..",
-      user_values_id: 1,
-      completed: false
-    },
-
-    {
-      id: 2,
-      user_id: 123,
-      project_title: "Sleep",
-      project_description: "etc..",
-      user_values_id: 2,
-      completed: false
-    },
-
-    {
-      id: 3,
-      user_id: 123,
-      project_title: "Eat",
-      project_description: "etc..",
-      user_values_id: 3,
-      completed: false
-    }
-  ];
-
-  const valuesArray = [
-    {
-      id: 1,
-      user_id: 123,
-      value_name: "Love"
-    },
-
-    {
-      id: 2,
-      user_id: 123,
-      value_name: "Harmony"
-    },
-
-    {
-      id: 3,
-      user_id: 123,
-      value_name: "Peace"
-    }
-  ];
 
   return (
     <div>
@@ -95,16 +46,17 @@ function Dashboard(props) {
 
       <Container>
         <Row>
-          {props.valueList.map(value => {
-            return (
-              <TopValueBtn
-                key={value.value}
-                value={value.value}
-                color={value.color}
-                description={value.description}
-              />
-            );
-          })}
+          {!loading &&
+            values.map(value => {
+              return (
+                <TopValueBtn
+                  key={value.value_name}
+                  value={value.value_name}
+                  color={value.color}
+                  description={value.importance_description}
+                />
+              );
+            })}
         </Row>
         <Row>
           <NoteCard title="This is a test" />

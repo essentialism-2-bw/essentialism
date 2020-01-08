@@ -16,13 +16,15 @@ function TopValueBtn(props) {
 
   const btnStyle = {
     paddingLeft: "30px",
-    paddingRight: "30px"
+    paddingRight: "30px",
+    backgroundColor: props.color,
+    borderColor: props.color
   };
 
   return (
     <div>
       <Col>
-        <Button size="sm" color={props.color} onClick={toggle} style={btnStyle}>
+        <Button size="sm" onClick={toggle} style={btnStyle}>
           {props.value}
         </Button>
         <Modal isOpen={modal} toggle={toggle}>
