@@ -40,6 +40,7 @@ export const login = (userInfo, history) => dispatch => {
     .post("https://essentialism-test-01.herokuapp.com/api/auth/login", userInfo)
     .then(res => {
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("id", res.data.id);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
 
       history.push("/dashboard");

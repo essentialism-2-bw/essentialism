@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
-const colors = ["#F1EC7C", "#AE8BDB", "#F9BA5C"];
+const colors = ["#242582", "#553D67", "#F64C72"];
 
 function Descriptions(props) {
   const stateObject = props.valueList.map(value => {
@@ -41,15 +41,6 @@ function Descriptions(props) {
   }
 
   function postValues(valueList) {
-    /* axiosWithAuth()
-      .post("api/usrValues/", { data: valueList })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      }); */
-
     axiosWithAuth()({
       method: "post",
       url: "api/usrValues/",
@@ -107,12 +98,7 @@ function Descriptions(props) {
                 color="success"
                 style={submitStyle}
                 onClick={() => {
-                  props.handleValueChange(
-                    descriptions,
-                    true,
-                    postValues,
-                    85471405814058
-                  );
+                  props.handleValueChange(descriptions, true, postValues);
                 }}
               >
                 submit
