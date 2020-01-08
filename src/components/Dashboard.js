@@ -24,13 +24,13 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
         setValues(res.data);
         setValueLoad(false);
       });
     axiosWithAuth()
       .get(`/api/projects/${localStorage.getItem("id")}`)
       .then(res => {
+        console.log(res.data);
         setProjects(res.data);
         setProjectsLoad(false);
       });

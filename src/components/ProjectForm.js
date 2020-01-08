@@ -16,17 +16,6 @@ import axiosWithAuth from "../Utils/axiosWithAuth";
 export default function ProjectForm(props) {
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => {
-    console.log({
-      ...data,
-      user_id: localStorage.getItem("id")
-    });
-
-    console.log(
-      axiosWithAuth().post(`api/projects/${localStorage.getItem("id")}`, {
-        user_id: parseInt(localStorage.getItem("id")),
-        ...data
-      })
-    );
     axiosWithAuth()
       .post(`api/projects/${localStorage.getItem("id")}`, {
         user_id: parseInt(localStorage.getItem("id")),
