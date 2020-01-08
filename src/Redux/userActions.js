@@ -22,6 +22,7 @@ export const signUp = (userInfo, history) => dispatch => {
     .then(res => {
       console.log(res);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("id", res.data.id);
       dispatch({ type: SIGN_UP_SUCCESS, payload: res.data });
       console.log(history);
       history.push("/onboarding/initial_values");
