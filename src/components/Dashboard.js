@@ -24,6 +24,7 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
+        console.log(res.data);
         setValues(res.data);
         setValueLoad(false);
       });
