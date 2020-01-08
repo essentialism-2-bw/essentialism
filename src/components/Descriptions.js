@@ -20,6 +20,7 @@ const colors = ["#F1EC7C", "#AE8BDB", "#F9BA5C"];
 function Descriptions(props) {
   const stateObject = props.valueList.map(value => {
     return {
+      user_id: localStorage.getItem("id"),
       value_name: value,
       color: colors[props.valueList.indexOf(value)],
       importance_description: ""
@@ -40,6 +41,15 @@ function Descriptions(props) {
   }
 
   function postValues(valueList) {
+    /* axiosWithAuth()
+      .post("api/usrValues/", { data: valueList })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      }); */
+
     axiosWithAuth()({
       method: "post",
       url: "api/usrValues/",
@@ -47,7 +57,6 @@ function Descriptions(props) {
     })
       .then(function(response) {
         console.log(response);
-        /* update state store */
       })
       .catch(function(error) {
         console.log(error);
