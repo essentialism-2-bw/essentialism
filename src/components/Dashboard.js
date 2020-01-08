@@ -10,9 +10,10 @@ import axiosWithAuth from "../Utils/axiosWithAuth";
 
 function Dashboard(props) {
   const [shouldShow, setShow] = useState(false);
-  const [loading, setLoad] = useState(true);
+  const [valueLoading, setValueLoad] = useState(true);
   const [values, setValues] = useState();
-  const [selected, setSelected] = useState([]);
+  const [projectsLoading, setProjectsLoad] = useState(true);
+  const [projects, setProjects] = useState();
 
   const addNoteStyle = {
     paddingLeft: "20px",
@@ -23,8 +24,15 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
+        console.log(res.data);
         setValues(res.data);
-        setLoad(false);
+        setValueLoad(false);
+      });
+    axiosWithAuth()
+      .get(`/api/projects/${localStorage.getItem("id")}`)
+      .then(res => {
+        setProjects(res.data);
+        setProjectsLoad(false);
       });
   }, []);
 
@@ -44,7 +52,7 @@ function Dashboard(props) {
       <Col>
         <Row>
           <Col xs="10">
-            {!loading &&
+            {!valueLoading &&
               values.map(value => {
                 return (
                   <TopValueBtn
@@ -71,13 +79,18 @@ function Dashboard(props) {
           </Col>
         </Row>
         <Row>
-          <NoteCard title="" />
+          {!projectsLoading && projects.length > 0 ? (
+            projects.map(project => console.log(project))
+          ) : (
+            <NoteCard title="" />
+          )}
         </Row>
         {shouldShow && (
           <ProjectForm
             close={() => {
               setShow(!shouldShow);
             }}
+            selectData={values}
           />
         )}
       </Col>

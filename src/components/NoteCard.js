@@ -13,7 +13,7 @@ function NoteCard(props) {
   };
 
   return (
-    <Col>
+    <Col xs="3">
       <div style={cardStyle}>
         <h4>{props.title !== "" ? props.title : "make a new note..."}</h4>
       </div>
