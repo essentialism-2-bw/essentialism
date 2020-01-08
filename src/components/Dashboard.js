@@ -52,6 +52,17 @@ function Dashboard(props) {
     setCount((place += 1));
   }
 
+  function deleteNote(project_id) {
+    console.log(project_id);
+    axiosWithAuth()
+      .delete(`/api/projects/${localStorage.getItem("id")}/${project_id}`)
+      .then(res => {
+        console.log(res);
+        incrementCount();
+      })
+      .catch(err => console.log(err));
+  }
+
   return (
     <Container>
       {/* <h1>Hello User!</h1>
@@ -98,12 +109,16 @@ function Dashboard(props) {
         <Row>
           {!projectsLoading && projects.length > 0 ? (
             projects.map(project => {
+              console.log(project);
               return (
                 <NoteCard
+                  project={project}
                   title={project.project_title}
                   key={project.id}
                   colors={colorArray}
                   valueId={project.user_values_id}
+                  description={project.project_description}
+                  deleteNote={deleteNote}
                 />
               );
             })
