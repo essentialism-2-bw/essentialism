@@ -15,10 +15,6 @@ import "./App.css";
 function App() {
   const [values, setValues] = useState([]);
 
-  /* useEffect(() => {
-    console.log(values);
-  }, [values]); */
-
   function handleValueChange(list, hasFunc, func, token) {
     console.log("submited values", list);
     setValues([...list]);
