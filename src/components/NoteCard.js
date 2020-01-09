@@ -31,13 +31,12 @@ function NoteCard(props) {
 
   const cardStyle = {
     minWidth: "180px",
-    backgroundColor: "#fff",
+    backgroundColor: hexColor,
     borderRadius: "7px",
     boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     padding: "10px 20px",
     marginTop: "30px",
-    color: hexColor,
-    border: `5px solid ${hexColor}`
+    color: "#fff"
   };
 
   const { register, handleSubmit, watch, errors } = useForm();
