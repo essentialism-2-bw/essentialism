@@ -63,27 +63,12 @@ function Dashboard(props) {
       .catch(err => console.log(err));
   }
 
-  //------------------------ This is math ----------------------------------
-  const totalProjects = () => {
-    if(projects.length >= 1){
-      return projects.length
-    }else{
-      return null
-    }
-  };
-  console.log("Total Projects", totalProjects())
-  
-  const valueProject = values.map(value => {
-      return (value.id === projects.user_value_id)
-    });
-  console.log("Value Project", valueProject)
-
   return (
     <Container>
       {/* this link is to test out pro page */}
       <Link to="/pro">Click here to test pro page</Link>
 
-      {/* <h1>Hello User!</h1>
+      <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
           <h3>Here's the values you've assigned so far:</h3>
