@@ -13,9 +13,6 @@ const ProPage = props => {
 
   return (
     <div>
-      <button onClick={() => props.getValues(userId)}>Get Values</button>
-      <button onClick={() => props.getProjects(userId)}>Get Projects</button>
-
       {/* <Chart /> */}
       {props.values.length > 0 && props.projects.length > 0 && <Chart />}
 
