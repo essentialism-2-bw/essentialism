@@ -11,9 +11,9 @@ import axiosWithAuth from "../Utils/axiosWithAuth";
 function Dashboard(props) {
   const [shouldShow, setShow] = useState(false);
   const [valueLoading, setValueLoad] = useState(true);
-  const [values, setValues] = useState();
+  const [values, setValues] = useState([]);
   const [projectsLoading, setProjectsLoad] = useState(true);
-  const [projects, setProjects] = useState();
+  const [projects, setProjects] = useState(0);
 
   const addNoteStyle = {
     paddingLeft: "20px",
@@ -24,22 +24,37 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
+        console.log("User Values", res.data);
         setValues(res.data);
         setValueLoad(false);
       });
     axiosWithAuth()
       .get(`/api/projects/${localStorage.getItem("id")}`)
       .then(res => {
-        console.log(res.data);
+        console.log("Projects", res.data);
         setProjects(res.data);
         setProjectsLoad(false);
       });
   }, []);
 
+  //------------------------ This is math ----------------------------------
+  const totalProjects = () => {
+    if(projects.length >= 1){
+      return projects.length
+    }else{
+      return null
+    }
+  };
+  console.log("Total Projects", totalProjects())
+  
+  const valueProject = values.map(value => {
+      return (value.id === projects.user_value_id)
+    });
+  console.log("Value Project", valueProject)
+
   return (
     <Container>
-      {/* <h1>Hello User!</h1>
+      <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
           <h3>Here's the values you've assigned so far:</h3>
@@ -49,7 +64,7 @@ function Dashboard(props) {
           <h3>Here's the values you've completed so far:</h3>
           <PieChart />
         </div>
-      </div> */}
+      </div>
       <Col>
         <Row>
           <Col xs="10">
