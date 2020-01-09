@@ -66,7 +66,7 @@ function Dashboard(props) {
       {/* this link is to test out pro page */}
       <Row>
         <Col>
-          <Link to="/analytics">Click here to test pro page</Link>
+          <Link to="/analytics">Click here to test analytics page</Link>
         </Col>
       </Row>
       {/* <h1>Hello User!</h1>

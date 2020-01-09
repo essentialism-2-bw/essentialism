@@ -11,8 +11,7 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import PrivateRoute from "./Utils/PrivateRoute";
 import "./App.css";
-import ProPage from "./components/ProPage";
-import Chart from "./components/Chart";
+import Analytics from "./components/Analytics";
 
 function App() {
   const [values, setValues] = useState([]);
@@ -58,11 +57,8 @@ function App() {
           <PrivateRoute path="/onboarding/initial_values">
             <InitialValues handleValueChange={handleValueChange} />
           </PrivateRoute>
-          {/* <PrivateRoute exact path="/pro/chart" component={Chart} /> */}
-          <PrivateRoute path="/pro" component={ProPage} />
-
+          <PrivateRoute path="/analytics" component={Analytics} />
           <Route path="/login" component={Login} />
-
           <Route path="/" component={SignUp} />
         </Switch>
       </Router>
