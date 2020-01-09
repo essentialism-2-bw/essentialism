@@ -11,7 +11,7 @@ import axiosWithAuth from "../Utils/axiosWithAuth";
 function Dashboard(props) {
   const [shouldShow, setShow] = useState(false);
   const [valueLoading, setValueLoad] = useState(true);
-  const [values, setValues] = useState();
+  const [values, setValues] = useState([]);
   const [projectsLoading, setProjectsLoad] = useState(true);
   const [projects, setProjects] = useState();
   const [counter, setCount] = useState(0);
@@ -26,6 +26,7 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/usrValues/${localStorage.getItem("id")}`)
       .then(res => {
+        console.log("User Values", res.data);
         setValues(res.data);
         let colorArray = [];
         res.data.forEach(val => {
@@ -42,6 +43,7 @@ function Dashboard(props) {
     axiosWithAuth()
       .get(`/api/projects/${localStorage.getItem("id")}`)
       .then(res => {
+        console.log("Projects", res.data);
         setProjects(res.data);
         setProjectsLoad(false);
       });
@@ -69,17 +71,6 @@ function Dashboard(props) {
           <Link to="/analytics">Click here to test analytics page</Link>
         </Col>
       </Row>
-      {/* <h1>Hello User!</h1>
-      <div className="pieChartsDiv">
-        <div>
-          <h3>Here's the values you've assigned so far:</h3>
-          <PieChart />
-        </div>
-        <div>
-          <h3>Here's the values you've completed so far:</h3>
-          <PieChart />
-        </div>
-      </div> */}
       <Row>
         <Col xs="10">
           {!valueLoading &&

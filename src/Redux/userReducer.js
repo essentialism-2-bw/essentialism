@@ -8,7 +8,9 @@ import {
   GET_VALUES_SUCCESS,
   GET_VALUES_FAILED,
   GET_PROJECTS_SUCCESS,
-  GET_PROJECTS_FAILED
+  GET_PROJECTS_FAILED,
+  ADD_TODO,
+  COMPLETE_TODO
 } from "./userActions";
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
   isFetching: false,
   currentUser: {},
   values: [],
-  projects: []
+  projects: [],
+  todo: []
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -83,6 +86,17 @@ export const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: payload
       };
+      case ADD_TODO:
+        return {
+          ...state,
+          todo: [...state.todo, payload]
+        };
+        case COMPLETE_TODO:
+          return{
+            ...state,
+            todo: state.todo.map((item) => 
+              item.id === payload ? {...item, completed: !item.completed} : item
+          )}
     default:
       return state;
   }

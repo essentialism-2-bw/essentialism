@@ -23,6 +23,9 @@ export const GET_VALUES_FAILED = "GET_VALUES_FAILED";
 export const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS";
 export const GET_PROJECTS_FAILED = "GET_PROJECTS_FAILED";
 
+export const ADD_TODO = "ADD_TODO";
+export const COMPLETE_TODO = "COMPLETE_TODO";
+
 export const signUp = (userInfo, history) => dispatch => {
   dispatch({ type: SIGN_UP_START });
   axios
@@ -83,3 +86,17 @@ export const getProjects = userId => dispatch => {
       dispatch({ type: GET_PROJECTS_FAILED, payload: error.error });
     });
 };
+
+export const addTodo = (input) => dispatch => {
+  const newTodo ={
+    item: input,
+    completed: false,
+    id: Date.now()
+  }
+  dispatch({ type: ADD_TODO, payload: newTodo})
+};
+
+export const completeTodo = (id) => dispatch => {
+  dispatch({ type: COMPLETE_TODO, payload: id })
+  console.log("id", id)
+}
