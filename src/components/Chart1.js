@@ -48,6 +48,7 @@ class PieChart extends React.Component {
     };
     return (
       <div>
+        <h3>Completed Project Tracker</h3>
         <Chart
           height={window.innerHeight}
           data={dv}

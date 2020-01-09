@@ -31,8 +31,7 @@ const Chart = props => {
       completedProjects,
       completedValue1,
       completedValue2,
-      completedValue3,
-      props.values[0].id
+      completedValue3
     );
   }
 
