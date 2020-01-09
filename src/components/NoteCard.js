@@ -67,6 +67,22 @@ function NoteCard(props) {
     setEdit(false);
   };
 
+  function completedProject() {
+    axiosWithAuth()
+      .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
+        ...project,
+        completed: "true"
+      })
+      .then(function(response) {
+        console.log(response);
+        props.callSetCount();
+        toggle();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   return (
     <span>
       <Col key={props.key} onClick={toggle}>
@@ -127,6 +143,13 @@ function NoteCard(props) {
                 }}
               >
                 Edit
+              </Button>
+              <Button
+                color="success"
+                style={{ marginRight: "20px" }}
+                onClick={() => completedProject()}
+              >
+                Completed
               </Button>
               <Button
                 color="danger"
