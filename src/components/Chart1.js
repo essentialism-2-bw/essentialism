@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   G2,
   Chart,
@@ -18,19 +18,21 @@ import DataSet from "@antv/data-set";
 
 class PieChart extends React.Component {
   render() {
+    console.log(this.props);
+    const valueData = this.props.values;
     const { DataView } = DataSet;
     const data = [
       {
-        item: "Love",
-        count: 40
+        item: valueData[0].value_name,
+        count: this.props.completedValue1
       },
       {
-        item: "Harmony",
-        count: 21
+        item: valueData[1].value_name,
+        count: this.props.completedValue2
       },
       {
-        item: "Peace",
-        count: 17
+        item: valueData[2].value_name,
+        count: this.props.completedValue3
       }
     ];
     const dv = new DataView();
@@ -54,7 +56,7 @@ class PieChart extends React.Component {
           height={window.innerHeight}
           data={dv}
           scale={cols}
-          padding={[20, 100, 40, 80]}
+          padding={[20, 20, 20, 20]}
           forceFit
         >
           <Coord type="theta" radius={0.75} />
@@ -66,7 +68,7 @@ class PieChart extends React.Component {
           />
           <Tooltip
             showTitle={false}
-            itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
+            itemTpl='<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
           />
           <Geom
             type="intervalStack"
