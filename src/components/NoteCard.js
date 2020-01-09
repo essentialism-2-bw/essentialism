@@ -68,12 +68,16 @@ function NoteCard(props) {
     setEdit(false);
   };
 
-  console.log(project);
-
   return (
     <span>
       <Col key={props.key} onClick={toggle}>
-        <div style={cardStyle} onClick={toggle}>
+        <div
+          style={cardStyle}
+          onClick={toggle}
+          onMouseOver={event => {
+            event.target.style.cursor = "pointer";
+          }}
+        >
           <h4>{props.title !== "" ? props.title : "make a new note..."}</h4>
         </div>
       </Col>
