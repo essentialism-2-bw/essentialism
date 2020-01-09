@@ -63,7 +63,9 @@ function Dashboard(props) {
 
   return (
     <Container>
-      <Link to="/pro">Click here please</Link>
+      {/* this link is to test out pro page */}
+      <Link to="/pro">Click here to test pro page</Link>
+
       {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
