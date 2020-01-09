@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosWithAuth from "../Utils/axiosWithAuth";
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -15,6 +16,12 @@ export const GET_USER_FAILED = "GET_USER_FAILED";
 export const SEND_STATS_START = "SEND_STATS_START";
 export const SEND_STATS_SUCCESS = "SEND_STATS_SUCCESS";
 export const SEND_STATS_FAILED = "SEND_STATS_FAILED";
+
+export const GET_VALUES_SUCCESS = "GET_VALUES_SUCCESS";
+export const GET_VALUES_FAILED = "GET_VALUES_FAILED";
+
+export const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS";
+export const GET_PROJECTS_FAILED = "GET_PROJECTS_FAILED";
 
 export const signUp = (userInfo, history) => dispatch => {
   dispatch({ type: SIGN_UP_START });
@@ -46,4 +53,32 @@ export const login = (userInfo, history) => dispatch => {
       history.push("/dashboard");
     })
     .catch(err => dispatch({ type: LOGIN_FAILED }));
+};
+
+export const getValues = userId => dispatch => {
+  axiosWithAuth()
+    .get(`api/usrValues/${userId}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_VALUES_SUCCESS, payload: res.data });
+      // get value success
+    })
+    .catch(error => {
+      console.log("error");
+      dispatch({ type: GET_VALUES_FAILED, payload: error.error });
+    });
+};
+
+export const getProjects = userId => dispatch => {
+  axiosWithAuth()
+    .get(`api/projects/${userId}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_PROJECTS_SUCCESS, payload: res.data });
+      // get value success
+    })
+    .catch(error => {
+      console.log("error");
+      dispatch({ type: GET_PROJECTS_FAILED, payload: error.error });
+    });
 };
