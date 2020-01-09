@@ -34,7 +34,9 @@ export const mainListItems = (
       <ListItemIcon>
         <ListAltIcon />
       </ListItemIcon>
-      <ListItemText primary="Todo App" />
+      <a href='/todo'>
+        <ListItemText primary="Todo App" />
+      </a>
     </ListItem>
   </div>
 );

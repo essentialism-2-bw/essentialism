@@ -182,7 +182,6 @@ const ProPage = props => {
           </Grid>
         </Container>
       </main>
-      <TodoRedux />
     </div>
   );
 };
