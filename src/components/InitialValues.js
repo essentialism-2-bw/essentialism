@@ -5,6 +5,15 @@ import { Button, Form, Badge, Container, Row, Col } from "reactstrap";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
 function InitialValues(props) {
+  const mediaMatch = window.matchMedia("(min-width: 800px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
+
   const [values, setValues] = useState([]);
   const [selected, setSelected] = useState([]);
 
@@ -47,8 +56,7 @@ function InitialValues(props) {
   };
 
   const submitStyle = {
-    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-    marginLeft: "-60px"
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
   };
 
   const bodyHeight = {
@@ -73,20 +81,24 @@ function InitialValues(props) {
           value={selected}
         >
           <h4 style={headerMargin}>
-            <Badge style={headerStyle}>
-              Pick the values which resonate with you
-            </Badge>
-            <Link to="/onboarding/final_values">
-              <Button
-                color="success"
-                onClick={() => {
-                  props.handleValueChange(selected, false);
-                }}
-                style={submitStyle}
-              >
-                continue
-              </Button>
-            </Link>
+            <Row>
+              <Col xs="12">
+                <Badge style={styles.container(matches)}>
+                  Pick the values which resonate with you
+                </Badge>
+                <Link to="/onboarding/final_values">
+                  <Button
+                    color="success"
+                    onClick={() => {
+                      props.handleValueChange(selected, false);
+                    }}
+                    style={submitStyle}
+                  >
+                    continue
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
           </h4>
           {selected.length > 0 &&
             selected.map(value => {
@@ -111,5 +123,22 @@ function InitialValues(props) {
     </Container>
   );
 }
+
+const styles = {
+  container: isRowBased => ({
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: isRowBased
+      ? "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
+      : "none",
+    fontSize: "inherit",
+    color: "inherit",
+    fontWeight: "inherit",
+    padding: isRowBased ? "30px 100px 30px 30px" : "0px",
+    justifyContent: "space-around",
+    marginRight: isRowBased ? "-60px" : "0px",
+    marginBottom: isRowBased ? "0px" : "20px"
+  })
+};
 
 export default InitialValues;
