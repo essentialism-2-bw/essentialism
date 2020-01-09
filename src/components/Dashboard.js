@@ -63,6 +63,12 @@ function Dashboard(props) {
 
   return (
     <Container>
+      {/* this link is to test out pro page */}
+      <Row>
+        <Col>
+          <Link to="/pro">Click here to test pro page</Link>
+        </Col>
+      </Row>
       {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
@@ -74,68 +80,75 @@ function Dashboard(props) {
           <PieChart />
         </div>
       </div> */}
-      <Col>
-        <Row>
-          <Col xs="10">
-            {!valueLoading &&
-              values.map(value => {
-                return (
-                  <TopValueBtn
-                    key={value.value_name}
-                    value={value.value_name}
-                    color={value.color}
-                    description={value.importance_description}
-                    valueObj={value}
-                    callSetCount={incrementCount}
-                  />
-                );
-              })}
-          </Col>
-          <Col xs="2">
-            <Button
-              size="sm"
-              color="success"
-              style={addNoteStyle}
-              onClick={() => {
-                setShow(!shouldShow);
-              }}
-            >
-              Add +
-            </Button>
-          </Col>
-        </Row>
-        <Row>
-          {!projectsLoading && projects.length > 0 ? (
-            projects.map(project => {
+      <Row>
+        <Col xs="10">
+          {!valueLoading &&
+            values.map(value => {
               return (
-                <NoteCard
-                  project={project}
-                  title={project.project_title}
-                  key={project.id}
-                  colors={colorArray}
-                  valueId={project.user_values_id}
-                  description={project.project_description}
-                  deleteNote={deleteNote}
+                <TopValueBtn
+                  key={value.value_name}
+                  value={value.value_name}
+                  color={value.color}
+                  description={value.importance_description}
+                  valueObj={value}
                   callSetCount={incrementCount}
                 />
               );
-            })
-          ) : (
-            <NoteCard title="" />
+            })}
+        </Col>
+        <Col xs="2">
+          {!valueLoading && (
+            <ProjectForm selectData={values} callSetCount={incrementCount} />
           )}
-        </Row>
-        {shouldShow && (
-          <ProjectForm
-            close={() => {
-              setShow(!shouldShow);
-            }}
-            selectData={values}
-            callSetCount={incrementCount}
-          />
+        </Col>
+      </Row>
+      <Row>
+        {!projectsLoading && projects.length > 0 ? (
+          projects.map(project => {
+            return (
+              <NoteCard
+                project={project}
+                title={project.project_title}
+                key={project.id}
+                colors={colorArray}
+                valueId={project.user_values_id}
+                description={project.project_description}
+                deleteNote={deleteNote}
+                callSetCount={incrementCount}
+              />
+            );
+          })
+        ) : (
+          <Col xs="7">
+            <div
+              style={{
+                padding: "30px",
+                borderRadius: "7px",
+                boxShadow:
+                  "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
+                marginTop: "20px"
+              }}
+            >
+              <h4>Make your first note by clicking add in the top right -></h4>
+              <p>
+                You can also remind yourself why you picked each value by
+                clicking on them and accessing the description you wrote. You
+                can edit your values at any time, and its recomended to for
+                growth.
+              </p>
+              <p>
+                To make a note, click add in the top right. Afterwards assign a
+                value to that note and write what it is you want to accomplish
+                or remind yourself about. Be sure to make the title a short
+                summary of the note. The title is what get mainly displayed in a
+                vision board manner. Notes can be edited similar to values, with
+                the edition of deletion and completion capabilities.
+              </p>
+              <p>Now get to it!</p>
+            </div>
+          </Col>
         )}
-      </Col>
-      {/* this link is to test out pro page */}
-      <Link to="/pro">[ignore this pls] Pro page</Link>
+      </Row>
     </Container>
   );
 }

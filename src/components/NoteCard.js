@@ -30,15 +30,13 @@ function NoteCard(props) {
     });
 
   const cardStyle = {
-    height: "100px",
     minWidth: "180px",
-    backgroundColor: "#fff",
+    backgroundColor: hexColor,
     borderRadius: "7px",
     boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
     padding: "10px 20px",
     marginTop: "30px",
-    color: hexColor,
-    border: `5px solid ${hexColor}`
+    color: "#fff"
   };
 
   const { register, handleSubmit, watch, errors } = useForm();
@@ -69,12 +67,16 @@ function NoteCard(props) {
     setEdit(false);
   };
 
-  console.log(project);
-
   return (
     <span>
-      <Col xs="3" key={props.key} onClick={toggle}>
-        <div style={cardStyle} onClick={toggle}>
+      <Col key={props.key} onClick={toggle}>
+        <div
+          style={cardStyle}
+          onClick={toggle}
+          onMouseOver={event => {
+            event.target.style.cursor = "pointer";
+          }}
+        >
           <h4>{props.title !== "" ? props.title : "make a new note..."}</h4>
         </div>
       </Col>

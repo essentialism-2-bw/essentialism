@@ -46,6 +46,7 @@ function TopValueBtn(props) {
   const btnStyle = {
     paddingLeft: "30px",
     paddingRight: "30px",
+    marginBottom: "10px",
     backgroundColor: props.color,
     borderColor: props.color
   };
