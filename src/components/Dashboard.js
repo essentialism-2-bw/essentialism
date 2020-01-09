@@ -113,7 +113,7 @@ function Dashboard(props) {
             }
           })
         ) : (
-          <Col xs="7">
+          <Col xs="12" sm="10" md="7">
             <div
               style={{
                 padding: "30px",

@@ -50,7 +50,7 @@ class Chart2 extends React.Component {
       <div>
         <div className="chartTitle">Project Value Tracker</div>
         <Chart
-          height={window.innerHeight}
+          height={300}
           data={data}
           padding={[60, 20, 40, 60]}
           scale={scale}
