@@ -100,7 +100,7 @@ const useStyles = makeStyles(theme => ({
     height: 240
   }
 }));
-const Analytics = props => {
+const ProPage = props => {
   const userId = localStorage.getItem("id");
 
   useEffect(() => {
@@ -189,4 +189,4 @@ const mapStateToProps = state => ({
   values: state.values,
   projects: state.projects
 });
-export default connect(mapStateToProps, { getValues, getProjects })(Analytics);
+export default connect(mapStateToProps, { getValues, getProjects })(ProPage);

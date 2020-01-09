@@ -48,12 +48,12 @@ class PieChart extends React.Component {
     };
     return (
       <div>
-        <h3>Completed Project Tracker</h3>
+        <div className="chartTitle">Completed Project Tracker</div>
         <Chart
           height={window.innerHeight}
           data={dv}
           scale={cols}
-          padding={[20, 20, 20, 20]}
+          padding={[20, 80, 20, 80]}
           forceFit
         >
           <Coord type="theta" radius={0.75} />

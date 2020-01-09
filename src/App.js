@@ -11,7 +11,6 @@ import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import PrivateRoute from "./Utils/PrivateRoute";
 import "./App.css";
-import ProPage from "./components/ProPage";
 import Analytics from "./components/Analytics";
 
 function App() {
@@ -58,8 +57,7 @@ function App() {
           <PrivateRoute path="/onboarding/initial_values">
             <InitialValues handleValueChange={handleValueChange} />
           </PrivateRoute>
-          /* <PrivateRoute exact path="/test" component={Analytics} /> */
-          <PrivateRoute path="/pro" component={ProPage} />
+          <PrivateRoute path="/analytics" component={Analytics} />
           <Route path="/login" component={Login} />
           <Route path="/" component={SignUp} />
         </Switch>

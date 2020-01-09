@@ -26,7 +26,9 @@ export const mainListItems = (
       <ListItemIcon>
         <AssessmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Analytics" />
+      <a href="/analytics">
+        <ListItemText primary="Analytics" />
+      </a>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

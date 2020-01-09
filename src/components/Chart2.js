@@ -48,7 +48,7 @@ class Chart2 extends React.Component {
     };
     return (
       <div>
-        <h3>Project Value Tracker</h3>
+        <div className="chartTitle">Project Value Tracker</div>
         <Chart
           height={window.innerHeight}
           data={data}
