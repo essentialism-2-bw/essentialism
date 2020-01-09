@@ -30,7 +30,6 @@ function NoteCard(props) {
     });
 
   const cardStyle = {
-    height: "100px",
     minWidth: "180px",
     backgroundColor: "#fff",
     borderRadius: "7px",
@@ -73,7 +72,7 @@ function NoteCard(props) {
 
   return (
     <span>
-      <Col xs="3" key={props.key} onClick={toggle}>
+      <Col key={props.key} onClick={toggle}>
         <div style={cardStyle} onClick={toggle}>
           <h4>{props.title !== "" ? props.title : "make a new note..."}</h4>
         </div>

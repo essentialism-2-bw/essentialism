@@ -95,7 +95,7 @@ function Dashboard(props) {
               })}
           </Col>
           <Col xs="2">
-            <Button
+            {/* <Button
               size="sm"
               color="success"
               style={addNoteStyle}
@@ -103,8 +103,11 @@ function Dashboard(props) {
                 setShow(!shouldShow);
               }}
             >
-              Add +
-            </Button>
+              Add
+            </Button> */}
+            {!valueLoading && (
+              <ProjectForm selectData={values} callSetCount={incrementCount} />
+            )}
           </Col>
         </Row>
         <Row>
@@ -127,15 +130,6 @@ function Dashboard(props) {
             <NoteCard title="" />
           )}
         </Row>
-        {shouldShow && (
-          <ProjectForm
-            close={() => {
-              setShow(!shouldShow);
-            }}
-            selectData={values}
-            callSetCount={incrementCount}
-          />
-        )}
       </Col>
     </Container>
   );
