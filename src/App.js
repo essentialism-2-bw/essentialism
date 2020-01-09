@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./Utils/PrivateRoute";
 import "./App.css";
 import Analytics from "./components/Analytics";
+import TodoRedux from './components/TodoRedux';
 
 function App() {
   const [values, setValues] = useState([]);
@@ -58,6 +59,7 @@ function App() {
             <InitialValues handleValueChange={handleValueChange} />
           </PrivateRoute>
           <PrivateRoute path="/analytics" component={Analytics} />
+          <PrivateRoute path="/todo" component={TodoRedux} />
           <Route path="/login" component={Login} />
           <Route path="/" component={SignUp} />
         </Switch>
