@@ -4,7 +4,7 @@ import { Button, Container, Row, Col, Progress } from "reactstrap";
 import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
 import ProjectForm from "./ProjectForm";
-
+import { Link } from "react-router-dom";
 import PieChart from "./Charts";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
@@ -13,7 +13,9 @@ function Dashboard(props) {
   const [valueLoading, setValueLoad] = useState(true);
   const [values, setValues] = useState([]);
   const [projectsLoading, setProjectsLoad] = useState(true);
-  const [projects, setProjects] = useState(0);
+  const [projects, setProjects] = useState();
+  const [counter, setCount] = useState(0);
+  const [colorArray, setColorObject] = useState([]);
 
   const addNoteStyle = {
     paddingLeft: "20px",
@@ -26,7 +28,17 @@ function Dashboard(props) {
       .then(res => {
         console.log("User Values", res.data);
         setValues(res.data);
+        let colorArray = [];
+        res.data.forEach(val => {
+          let valid = val.id;
+          let color = val.color;
+          colorArray.push({ color, valid });
+        });
         setValueLoad(false);
+        return colorArray;
+      })
+      .then(colors => {
+        setColorObject(colors);
       });
     axiosWithAuth()
       .get(`/api/projects/${localStorage.getItem("id")}`)
@@ -35,7 +47,21 @@ function Dashboard(props) {
         setProjects(res.data);
         setProjectsLoad(false);
       });
-  }, []);
+  }, [counter]);
+
+  function incrementCount() {
+    let place = counter;
+    setCount((place += 1));
+  }
+
+  function deleteNote(project_id) {
+    axiosWithAuth()
+      .delete(`/api/projects/${localStorage.getItem("id")}/${project_id}`)
+      .then(res => {
+        incrementCount();
+      })
+      .catch(err => console.log(err));
+  }
 
   //------------------------ This is math ----------------------------------
   const totalProjects = () => {
@@ -54,7 +80,10 @@ function Dashboard(props) {
 
   return (
     <Container>
-      <h1>Hello User!</h1>
+      {/* this link is to test out pro page */}
+      <Link to="/pro">Click here to test pro page</Link>
+
+      {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
           <h3>Here's the values you've assigned so far:</h3>
@@ -77,6 +106,7 @@ function Dashboard(props) {
                     color={value.color}
                     description={value.importance_description}
                     valueObj={value}
+                    callSetCount={incrementCount}
                   />
                 );
               })}
@@ -97,9 +127,17 @@ function Dashboard(props) {
         <Row>
           {!projectsLoading && projects.length > 0 ? (
             projects.map(project => {
-              console.log(project);
               return (
-                <NoteCard title={project.project_title} key={project.id} />
+                <NoteCard
+                  project={project}
+                  title={project.project_title}
+                  key={project.id}
+                  colors={colorArray}
+                  valueId={project.user_values_id}
+                  description={project.project_description}
+                  deleteNote={deleteNote}
+                  callSetCount={incrementCount}
+                />
               );
             })
           ) : (
@@ -112,6 +150,7 @@ function Dashboard(props) {
               setShow(!shouldShow);
             }}
             selectData={values}
+            callSetCount={incrementCount}
           />
         )}
       </Col>

@@ -4,13 +4,19 @@ import {
   LOGIN_SUCCESS,
   SIGN_UP_START,
   SIGN_UP_SUCCESS,
-  SIGN_UP_FAILED
+  SIGN_UP_FAILED,
+  GET_VALUES_SUCCESS,
+  GET_VALUES_FAILED,
+  GET_PROJECTS_SUCCESS,
+  GET_PROJECTS_FAILED
 } from "./userActions";
 
 const initialState = {
   error: null,
   isFetching: false,
-  currentUser: {}
+  currentUser: {},
+  values: [],
+  projects: []
 };
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -57,7 +63,26 @@ export const userReducer = (state = initialState, { type, payload }) => {
         isFetching: false,
         currentUser: ""
       };
-
+    case GET_VALUES_SUCCESS:
+      return {
+        ...state,
+        values: payload
+      };
+    case GET_VALUES_FAILED:
+      return {
+        ...state,
+        error: payload
+      };
+    case GET_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        projects: payload
+      };
+    case GET_PROJECTS_FAILED:
+      return {
+        ...state,
+        error: payload
+      };
     default:
       return state;
   }
