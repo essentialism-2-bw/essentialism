@@ -23,11 +23,11 @@ class PieChart extends React.Component {
     const { DataView } = DataSet;
     const data = [
       {
-        item: "Projects Completed",
+        item: "Finished",
         count: this.props.completedProjects.length
       },
       {
-        item: "Not Completed",
+        item: "Unfinished",
         count: this.props.projects.length - this.props.completedProjects.length
       }
     ];
@@ -50,7 +50,7 @@ class PieChart extends React.Component {
       <div>
         <div className="chartTitle">Completed Project Tracker</div>
         <Chart
-          height={window.innerHeight}
+          height={250} /* {window.innerHeight} */
           data={dv}
           scale={cols}
           padding={[20, 80, 20, 80]}
