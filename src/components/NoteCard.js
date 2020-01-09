@@ -52,10 +52,11 @@ function NoteCard(props) {
     axiosWithAuth()
       .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
         ...project,
-        ...data
+        ...data,
+        completed: false
       })
       .then(function(response) {
-        console.log(response);
+        console.log("onSubmit response: ", response);
         props.callSetCount();
       })
       .catch(function(error) {
@@ -66,6 +67,22 @@ function NoteCard(props) {
       .setAttribute("disabled", "true");
     setEdit(false);
   };
+
+  function completedProject() {
+    axiosWithAuth()
+      .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
+        ...project,
+        completed: true
+      })
+      .then(function(response) {
+        console.log("completedProject response: ", response);
+        props.callSetCount();
+        toggle();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   return (
     <span>
@@ -127,6 +144,13 @@ function NoteCard(props) {
                 }}
               >
                 Edit
+              </Button>
+              <Button
+                color="success"
+                style={{ marginRight: "20px" }}
+                onClick={() => completedProject()}
+              >
+                Completed
               </Button>
               <Button
                 color="danger"
