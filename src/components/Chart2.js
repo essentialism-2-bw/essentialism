@@ -14,82 +14,71 @@ import {
   Facet,
   Util
 } from "bizcharts";
-import DataSet from "@antv/data-set";
 
 class Chart2 extends React.Component {
   render() {
-    const { DataView } = DataSet;
-    const data = [
+    const valueData = this.props.values;
+    var data = [
       {
-        item: "Projects Completed",
-        count: this.props.completedProjects.length
+        name: valueData[0].value_name,
+        vote: this.props.completedValue1
       },
       {
-        item: "Not Completed",
-        count: this.props.projects.length - this.props.completedProjects.length
+        name: valueData[1].value_name,
+        vote: this.props.completedValue2
+      },
+      {
+        name: valueData[2].value_name,
+        vote: this.props.completedValue3
       }
     ];
-    const dv = new DataView();
-    dv.source(data).transform({
-      type: "percent",
-      field: "count",
-      dimension: "item",
-      as: "percent"
-    });
-    const cols = {
-      percent: {
-        formatter: val => {
-          val = val * 100 + "%";
-          return val;
-        }
+    var imageMap = {
+      [valueData[0].value_name]:
+        "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036",
+      [valueData[1].value_name]:
+        "https://images.emojiterra.com/twitter/v12/512px/1f609.png",
+      [valueData[2].value_name]:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Emojione_1F602.svg/1200px-Emojione_1F602.svg.png",
+      Mark: "https://zos.alipayobjects.com/rmsportal/KzCdIdkwsXdtWkg.png"
+    };
+    const scale = {
+      vote: {
+        min: 0
       }
     };
     return (
       <div>
         <Chart
           height={window.innerHeight}
-          data={dv}
-          scale={cols}
-          padding={[20, 20, 20, 20]}
+          data={data}
+          padding={[60, 20, 40, 60]}
+          scale={scale}
           forceFit
         >
-          <Coord type="theta" radius={0.75} />
-          <Axis name="percent" />
-          <Legend
-            position="right"
-            offsetY={-window.innerHeight / 2 + 120}
-            offsetX={-100}
-          />
-          <Tooltip
-            showTitle={false}
-            itemTpl='<li><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
+          <Axis
+            name="vote"
+            labels={null}
+            title={null}
+            line={null}
+            tickLine={null}
           />
           <Geom
-            type="intervalStack"
-            position="percent"
-            color="item"
-            tooltip={[
-              "item*percent",
-              (item, percent) => {
-                percent = percent * 100 + "%";
-                return {
-                  name: item,
-                  value: percent
-                };
+            type="interval"
+            position="name*vote"
+            color={["name", ["#7f8da9", "#fec514", "#db4c3c", "#daf0fd"]]}
+          />
+          <Tooltip />
+          <Geom
+            type="point"
+            position="name*vote"
+            size={60}
+            shape={[
+              "name",
+              function(name) {
+                return ["image", imageMap[name]];
               }
             ]}
-            style={{
-              lineWidth: 1,
-              stroke: "#fff"
-            }}
-          >
-            <Label
-              content="percent"
-              formatter={(val, item) => {
-                return item.point.item + ": " + val;
-              }}
-            />
-          </Geom>
+          />
         </Chart>
       </div>
     );

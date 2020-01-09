@@ -23,16 +23,12 @@ class PieChart extends React.Component {
     const { DataView } = DataSet;
     const data = [
       {
-        item: valueData[0].value_name,
-        count: this.props.completedValue1
+        item: "Projects Completed",
+        count: this.props.completedProjects.length
       },
       {
-        item: valueData[1].value_name,
-        count: this.props.completedValue2
-      },
-      {
-        item: valueData[2].value_name,
-        count: this.props.completedValue3
+        item: "Not Completed",
+        count: this.props.projects.length - this.props.completedProjects.length
       }
     ];
     const dv = new DataView();

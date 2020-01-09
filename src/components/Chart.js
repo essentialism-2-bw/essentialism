@@ -39,13 +39,13 @@ const Chart = props => {
   return (
     <div>
       <div className="pieChartDiv">
-        <Chart1
+        <Chart2
           values={props.values}
           completedValue1={completedValue1}
           completedValue2={completedValue2}
           completedValue3={completedValue3}
         />
-        <Chart2
+        <Chart1
           projects={props.projects}
           completedProjects={completedProjects}
         />
