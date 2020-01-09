@@ -5,7 +5,7 @@ import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
 import ProjectForm from "./ProjectForm";
 import { Link } from "react-router-dom";
-import PieChart from "./Charts";
+import PieChart from "./Chart1";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
 function Dashboard(props) {
@@ -63,9 +63,6 @@ function Dashboard(props) {
 
   return (
     <Container>
-      {/* this link is to test out pro page */}
-      <Link to="/pro">Click here to test pro page</Link>
-
       {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
@@ -137,6 +134,8 @@ function Dashboard(props) {
           />
         )}
       </Col>
+      {/* this link is to test out pro page */}
+      <Link to="/pro">[ignore this pls] Pro page</Link>
     </Container>
   );
 }
