@@ -4,7 +4,7 @@ import { Button, Container, Row, Col, Progress } from "reactstrap";
 import TopValueBtn from "./TopValueBtn";
 import NoteCard from "./NoteCard";
 import ProjectForm from "./ProjectForm";
-
+import { Link } from "react-router-dom";
 import PieChart from "./Charts";
 import axiosWithAuth from "../Utils/axiosWithAuth";
 
@@ -63,6 +63,9 @@ function Dashboard(props) {
 
   return (
     <Container>
+      {/* this link is to test out pro page */}
+      <Link to="/pro">Click here to test pro page</Link>
+
       {/* <h1>Hello User!</h1>
       <div className="pieChartsDiv">
         <div>
