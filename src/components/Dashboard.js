@@ -44,7 +44,6 @@ function Dashboard(props) {
       .then(res => {
         setProjects(res.data);
         setProjectsLoad(false);
-        console.log(res.data);
       });
   }, [counter]);
 

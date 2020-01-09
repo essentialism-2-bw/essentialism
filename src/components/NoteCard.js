@@ -52,10 +52,11 @@ function NoteCard(props) {
     axiosWithAuth()
       .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
         ...project,
-        ...data
+        ...data,
+        completed: false
       })
       .then(function(response) {
-        console.log(response);
+        console.log("onSubmit response: ", response);
         props.callSetCount();
       })
       .catch(function(error) {
@@ -71,10 +72,10 @@ function NoteCard(props) {
     axiosWithAuth()
       .put(`/api/projects/${localStorage.getItem("id")}/${project.id}`, {
         ...project,
-        completed: "true"
+        completed: true
       })
       .then(function(response) {
-        console.log(response);
+        console.log("completedProject response: ", response);
         props.callSetCount();
         toggle();
       })
