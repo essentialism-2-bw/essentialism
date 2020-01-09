@@ -65,14 +65,8 @@ function Dashboard(props) {
 
   return (
     <Container>
-      {/* this link is to test out pro page */}
       <Row>
-        <Col>
-          <Link to="/analytics">Click here to test analytics page</Link>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs="10">
+        <Col xs="8">
           {!valueLoading &&
             values.map(value => {
               return (
@@ -87,9 +81,16 @@ function Dashboard(props) {
               );
             })}
         </Col>
-        <Col xs="2">
+        <Col xs="4">
           {!valueLoading && (
-            <ProjectForm selectData={values} callSetCount={incrementCount} />
+            <div>
+              <ProjectForm selectData={values} callSetCount={incrementCount} />
+              <Link to="/analytics">
+                <Button size="sm" color="dark" style={{ marginBottom: "10px" }}>
+                  Analytics
+                </Button>
+              </Link>
+            </div>
           )}
         </Col>
       </Row>

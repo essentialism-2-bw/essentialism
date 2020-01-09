@@ -41,7 +41,12 @@ export default function ProjectForm(props) {
 
   return (
     <span style={{ marginRight: "20px" }}>
-      <Button size="sm" onClick={toggle} color="success">
+      <Button
+        size="sm"
+        onClick={toggle}
+        color="success"
+        style={{ marginBottom: "10px" }}
+      >
         Add
       </Button>
 
