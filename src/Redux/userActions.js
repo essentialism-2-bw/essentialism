@@ -46,8 +46,9 @@ export const login = (userInfo, history) => dispatch => {
   axios
     .post("https://essentialism-test-01.herokuapp.com/api/auth/login", userInfo)
     .then(res => {
+      console.log("login response", res.data);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("id", res.data.id);
+      localStorage.setItem("id", res.data.user_id);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
 
       history.push("/dashboard");
