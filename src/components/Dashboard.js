@@ -68,7 +68,7 @@ function Dashboard(props) {
       {/* this link is to test out pro page */}
       <Row>
         <Col>
-          <Link to="/pro">Click here to test pro page</Link>
+          <Link to="/analytics">Click here to test analytics page</Link>
         </Col>
       </Row>
       <Row>
@@ -96,18 +96,20 @@ function Dashboard(props) {
       <Row>
         {!projectsLoading && projects.length > 0 ? (
           projects.map(project => {
-            return (
-              <NoteCard
-                project={project}
-                title={project.project_title}
-                key={project.id}
-                colors={colorArray}
-                valueId={project.user_values_id}
-                description={project.project_description}
-                deleteNote={deleteNote}
-                callSetCount={incrementCount}
-              />
-            );
+            if (project.completed === "false") {
+              return (
+                <NoteCard
+                  project={project}
+                  title={project.project_title}
+                  key={project.id}
+                  colors={colorArray}
+                  valueId={project.user_values_id}
+                  description={project.project_description}
+                  deleteNote={deleteNote}
+                  callSetCount={incrementCount}
+                />
+              );
+            }
           })
         ) : (
           <Col xs="7">

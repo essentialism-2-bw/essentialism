@@ -12,8 +12,8 @@ const Chart = props => {
   }, []);
 
   const completedProjects = props.projects.filter(
-    project => project.completed === "false"
-  ); // TODO: need to change back to true when true false function is working
+    project => project.completed === "true"
+  );
 
   const completedValue1 = completedProjects.filter(
     project => project.user_values_id === props.values[0].id
@@ -31,8 +31,7 @@ const Chart = props => {
       completedProjects,
       completedValue1,
       completedValue2,
-      completedValue3,
-      props.values[0].id
+      completedValue3
     );
   }
 

@@ -33,13 +33,13 @@ class Chart2 extends React.Component {
       }
     ];
     var imageMap = {
-      [valueData[0].value_name]:
-        "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036",
-      [valueData[1].value_name]:
-        "https://images.emojiterra.com/twitter/v12/512px/1f609.png",
-      [valueData[2].value_name]:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Emojione_1F602.svg/1200px-Emojione_1F602.svg.png",
-      Mark: "https://zos.alipayobjects.com/rmsportal/KzCdIdkwsXdtWkg.png"
+      // [valueData[0].value_name]:
+      //   "https://cdn.shopify.com/s/files/1/1061/1924/products/Smiling_Face_Emoji_large.png?v=1571606036",
+      // [valueData[1].value_name]:
+      //   "https://images.emojiterra.com/twitter/v12/512px/1f609.png",
+      // [valueData[2].value_name]:
+      //   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Emojione_1F602.svg/1200px-Emojione_1F602.svg.png",
+      // Mark: "https://zos.alipayobjects.com/rmsportal/KzCdIdkwsXdtWkg.png"
     };
     const scale = {
       vote: {
@@ -48,6 +48,7 @@ class Chart2 extends React.Component {
     };
     return (
       <div>
+        <div className="chartTitle">Project Value Tracker</div>
         <Chart
           height={window.innerHeight}
           data={data}

@@ -6,3 +6,8 @@
 .completed {
   text-decoration: line-through;
 }
+
+.chartTitle {
+  text-align: center;
+  font-size: 30px;
+}
