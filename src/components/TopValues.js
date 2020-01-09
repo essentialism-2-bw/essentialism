@@ -5,6 +5,15 @@ import { useForm } from "react-hook-form";
 import { Button, Form, Badge, Container, Row, Col } from "reactstrap";
 
 function TopValues(props) {
+  const mediaMatch = window.matchMedia("(min-width: 800px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
+
   function addValue(event) {
     if (event.target.classList.contains("btn-light")) {
       if (selected.length < 3) {
@@ -44,8 +53,7 @@ function TopValues(props) {
   };
 
   const submitStyle = {
-    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-    marginLeft: "-60px"
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
   };
 
   const bodyHeight = { minHeight: "700px" };
@@ -59,20 +67,24 @@ function TopValues(props) {
       <Col>
         <Form>
           <h4 style={headerMargin}>
-            <Badge style={headerStyle}>
-              Now pick the three values most important to you
-            </Badge>
-            <Link to="/onboarding/descriptions">
-              <Button
-                color="success"
-                onClick={() => {
-                  props.handleValueChange(selected, false);
-                }}
-                style={submitStyle}
-              >
-                continue
-              </Button>
-            </Link>
+            <Row>
+              <Col xs="12">
+                <Badge style={styles.container(matches)}>
+                  Now pick your top three values
+                </Badge>
+                <Link to="/onboarding/descriptions">
+                  <Button
+                    color="success"
+                    onClick={() => {
+                      props.handleValueChange(selected, false);
+                    }}
+                    style={submitStyle}
+                  >
+                    continue
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
           </h4>
           <div style={bodyHeight}>
             {values.map(value => {
@@ -93,5 +105,22 @@ function TopValues(props) {
     </Container>
   );
 }
+
+const styles = {
+  container: isRowBased => ({
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: isRowBased
+      ? "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
+      : "none",
+    fontSize: "inherit",
+    color: "inherit",
+    fontWeight: "inherit",
+    padding: isRowBased ? "30px 100px 30px 30px" : "0px",
+    justifyContent: "space-around",
+    marginRight: isRowBased ? "-60px" : "10px",
+    marginBottom: isRowBased ? "0px" : "20px"
+  })
+};
 
 export default TopValues;

@@ -18,6 +18,15 @@ import axiosWithAuth from "../Utils/axiosWithAuth";
 const colors = ["#1519ED", "#7D33B5", "#F64C72"];
 
 function Descriptions(props) {
+  const mediaMatch = window.matchMedia("(min-width: 800px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
+
   const stateObject = props.valueList.map(value => {
     return {
       user_id: localStorage.getItem("id"),
@@ -69,8 +78,7 @@ function Descriptions(props) {
   };
 
   const submitStyle = {
-    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)",
-    marginLeft: "-60px"
+    boxShadow: "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
   };
 
   const bodyHeight = { minHeight: "700px" };
@@ -90,8 +98,8 @@ function Descriptions(props) {
           }}
         >
           <h4 style={headerMargin}>
-            <Badge style={headerStyle}>
-              Please describe why each value is important to you
+            <Badge style={styles.container(matches)}>
+              Why is each important to you?
             </Badge>
             <Link to="/dashboard">
               <Button
@@ -130,5 +138,22 @@ function Descriptions(props) {
     </Container>
   );
 }
+
+const styles = {
+  container: isRowBased => ({
+    backgroundColor: "#fff",
+    borderRadius: "7px",
+    boxShadow: isRowBased
+      ? "0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)"
+      : "none",
+    fontSize: "inherit",
+    color: "inherit",
+    fontWeight: "inherit",
+    padding: isRowBased ? "30px 100px 30px 30px" : "0px",
+    justifyContent: "space-around",
+    marginRight: isRowBased ? "-60px" : "10px",
+    marginBottom: isRowBased ? "0px" : "20px"
+  })
+};
 
 export default Descriptions;
