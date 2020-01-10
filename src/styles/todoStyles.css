@@ -1,0 +1,46 @@
+.redux{
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.link{
+  color: white;
+  background-color: gray;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 87px;
+  transition: .5s;
+}
+
+.link:hover{
+  color: black;
+  background-color: lightgray;
+  text-decoration: none;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+
+.form input{
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.form button{
+  background-color: skyblue;
+  border: 1px solid gray;
+  border-radius: 3px;
+  transition: .5s;
+}
+
+.container h2{
+  border: 2px solid black;
+  padding: 5px;
+  margin: 15px;
+}

@@ -1,56 +1,70 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// import Auth from "./components/Auth";
+import InitialValues from "./components/InitialValues";
+import TopValues from "./components/TopValues";
+import Descriptions from "./components/Descriptions";
+import Dashboard from "./components/Dashboard";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
+import PrivateRoute from "./Utils/PrivateRoute";
+import "./App.css";
+import Analytics from "./components/Analytics";
+import TodoRedux from './components/TodoRedux';
 
 function App() {
-  const [date, setDate] = useState(null);
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.text();
-      setDate(newDate);
+  const [values, setValues] = useState([]);
+
+  function handleValueChange(list, hasFunc, func) {
+    setValues([...list]);
+    if (hasFunc) {
+      func(list);
     }
-    getDate();
-  }, []);
+  }
+
+  const appBackgroundStyle = {
+    // background: `linear-gradient(
+    //   135deg,
+    //   rgba(47, 128, 237, 1) 0%,
+    //   rgb(7, 74, 168) 98%
+    // )`,
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    paddingTop: "50px"
+  };
+
   return (
-    <main>
-      <h1>Create React App + Go API</h1>
-      <h2>
-        Deployed with{' '}
-        <a
-          href="https://zeit.co/docs"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          ZEIT Now
-        </a>
-        !
-      </h2>
-      <p>
-        <a
-          href="https://github.com/zeit/now-examples/tree/master/create-react-app-functions"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          This project
-        </a>{' '}
-        was bootstrapped with{' '}
-        <a href="https://facebook.github.io/create-react-app/">
-          Create React App
-        </a>{' '}
-        and contains three directories, <code>/public</code> for static assets,{' '}
-        <code>/src</code> for components and content, and <code>/api</code>{' '}
-        which contains a serverless <a href="https://golang.org/">Go</a>{' '}
-        function. See{' '}
-        <a href="/api/date">
-          <code>api/date</code> for the Date API with Go
-        </a>
-        .
-      </p>
-      <br />
-      <h2>The date according to Go is:</h2>
-      <p>{date ? date : 'Loading date...'}</p>
-    </main>
+    <div style={appBackgroundStyle}>
+      <Router>
+        <Switch>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/descriptions">
+            <Descriptions
+              valueList={values}
+              handleValueChange={handleValueChange}
+            />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/final_values">
+            <TopValues
+              valueList={values}
+              handleValueChange={handleValueChange}
+            />
+          </PrivateRoute>
+          <PrivateRoute path="/onboarding/initial_values">
+            <InitialValues handleValueChange={handleValueChange} />
+          </PrivateRoute>
+          <PrivateRoute path="/analytics" component={Analytics} />
+          <PrivateRoute path="/todo" component={TodoRedux} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={SignUp} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
