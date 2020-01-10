@@ -14,7 +14,7 @@ const TodoForm = props => {
 
   return(
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className="form">
         <input 
           type="text" 
           placeholder='What do you have to do?'

@@ -3,7 +3,7 @@
   justify-content: space-around;
 }
 
-.completed {
+.complete {
   text-decoration: line-through;
 }
 
